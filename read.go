@@ -8,6 +8,16 @@ import (
 	"strconv"
 )
 
+func ReadStrings(name string) ([]string, error) {
+	f, err := os.Open(name)
+	if err != nil {
+		return nil, fmt.Errorf("advent2022: opening %s: %w", name, err)
+	}
+	defer f.Close()
+
+	return readStrings(f)
+}
+
 func readStrings(r io.Reader) ([]string, error) {
 	scanner := bufio.NewScanner(r)
 
