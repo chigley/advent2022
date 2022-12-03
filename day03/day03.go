@@ -21,6 +21,20 @@ func Part1(in []string) (int, error) {
 	return totalPriority, nil
 }
 
+func Part2(in []string) (int, error) {
+	var totalPriority int
+
+	for i := 0; i < len(in); i += 3 {
+		p, err := overlapPriority(in[i], in[i+1], in[i+2])
+		if err != nil {
+			return 0, err
+		}
+		totalPriority += p
+	}
+
+	return totalPriority, nil
+}
+
 func overlapPriority(backpacks ...string) (int, error) {
 	var keep map[rune]struct{}
 	for i, b := range backpacks {
