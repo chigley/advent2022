@@ -16,8 +16,22 @@ func Part1(in [][2]advent2022.XY) int {
 	return pairs
 }
 
+func Part2(in [][2]advent2022.XY) int {
+	var pairs int
+	for _, p := range in {
+		if overlaps(p[0], p[1]) {
+			pairs++
+		}
+	}
+	return pairs
+}
+
 func fullyContains(a, b advent2022.XY) bool {
 	return a.X <= b.X && a.Y >= b.Y || a.X >= b.X && a.Y <= b.Y
+}
+
+func overlaps(a, b advent2022.XY) bool {
+	return a.X <= b.X && b.X <= a.Y || b.X <= a.X && a.X <= b.Y
 }
 
 func Parse(in []string) ([][2]advent2022.XY, error) {
